@@ -120,16 +120,28 @@ class NoughtsAndCrosses:
         row, col = np.nonzero(self.board == self.empty)
         return list(zip(row, col))
 
+    def print_board(self):
+        print("||===========||")
+        for i in range(len(self.board)):
+            print("||   |   |   ||")
+            print(f"|| {self.board[i][0]} | {self.board[i][1]} | {self.board[i][2]} ||")
+            print("||   |   |   ||")
+            if i == 2:
+                break
+            else:
+                print("||---+---+---||")
+        print("||===========||\n")
+        
 
 if __name__ == '__main__':
     player1 = HumanAgent()
     player2 = ABMinimaxAgent()
     game = NoughtsAndCrosses()
-    print(game.board)
+    game.print_board()
     while not game.winner():
         move = player1.next_move(game)
         game = game.move(move[0], move[1])
-        print(game.board)
+        game.print_board()
         if game.winner() == game.cross:
             print("Player one wins!")
             break
@@ -139,7 +151,7 @@ if __name__ == '__main__':
 
         move = player2.next_move(game)
         game = game.move(move[0], move[1])
-        print(game.board)
+        game.print_board()
         if game.winner() == game.nought:
             print("Player 2 wins!")
             break

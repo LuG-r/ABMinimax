@@ -1,7 +1,4 @@
 # Noughts and Crosses Game
-
-![Noughts and Crosses](noughts_and_crosses.jpg)
-
 This project implements a simple game of Noughts and Crosses (also known as Tic-Tac-Toe) in Python. It includes a command-line interface for playing against another human or against a computer opponent that uses the Alpha-beta pruning minimax algorithm.
 
 ## Table of Contents

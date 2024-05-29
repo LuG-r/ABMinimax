@@ -121,21 +121,22 @@ class NoughtsAndCrosses:
         return list(zip(row, col))
 
     def print_board(self):
+        """Pretty print the game board."""
         print("||===========||")
-        for i in range(len(self.board)):
+        for row_pos, row in enumerate(self.board):
             print("||   |   |   ||")
-            print(f"|| {self.board[i][0]} | {self.board[i][1]} | {self.board[i][2]} ||")
+            print(f"|| {row[0]} | {row[1]} | {row[2]} ||")
             print("||   |   |   ||")
-            if i == 2:
+            if row_pos == 2:
                 break
-            else:
-                print("||---+---+---||")
+            print("||---+---+---||")
         print("||===========||\n")
-        
+
 
 if __name__ == '__main__':
     player1 = HumanAgent()
-    player2 = ABMinimaxAgent()
+    opp_choice = input("Play against another human? (y/n)")
+    player2 = HumanAgent() if opp_choice == 'y' else ABMinimaxAgent()
     game = NoughtsAndCrosses()
     game.print_board()
     while not game.winner():

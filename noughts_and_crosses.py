@@ -13,6 +13,7 @@ Date: 13th May 2024
 import copy
 import numpy as np
 from human_agent import HumanAgent
+from ab_minimax_agent import ABMinimaxAgent
 
 class NoughtsAndCrosses:
     """
@@ -88,7 +89,7 @@ class NoughtsAndCrosses:
         Returns:
             int or str or bool: The winning symbol, "draw" or False if the game is ongoing.
         """
-        lines = {
+        lines = [
             self.board[0, :],   # First row
             self.board[1, :],   # Second row
             self.board[2, :],   # Third row
@@ -97,7 +98,7 @@ class NoughtsAndCrosses:
             self.board[:, 2],   # Third column
             self.board.diagonal(),  # Main diagonal
             np.fliplr(self.board).diagonal()  # Anti diagonal
-        }
+        ]
 
         for line in lines:
             if np.all(line == line[0]) and line[0] != self.empty:
@@ -122,7 +123,7 @@ class NoughtsAndCrosses:
 
 if __name__ == '__main__':
     player1 = HumanAgent()
-    player2 = HumanAgent()
+    player2 = ABMinimaxAgent()
     game = NoughtsAndCrosses()
     print(game.board)
     while not game.winner():

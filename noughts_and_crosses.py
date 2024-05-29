@@ -12,6 +12,7 @@ Date: 13th May 2024
 """
 import copy
 import numpy as np
+from human_agent import HumanAgent
 
 class NoughtsAndCrosses:
     """
@@ -91,9 +92,9 @@ class NoughtsAndCrosses:
             self.board[0, :],   # First row
             self.board[1, :],   # Second row
             self.board[2, :],   # Third row
-            self.board[:, 1],   # First column
-            self.board[:, 2],   # Second column
-            self.board[:, 3],   # Third column
+            self.board[:, 0],   # First column
+            self.board[:, 1],   # Second column
+            self.board[:, 2],   # Third column
             self.board.diagonal(),  # Main diagonal
             np.fliplr(self.board).diagonal()  # Anti diagonal
         }
@@ -117,3 +118,30 @@ class NoughtsAndCrosses:
         """
         row, col = np.nonzero(self.board == self.empty)
         return list(zip(row, col))
+
+
+if __name__ == '__main__':
+    player1 = HumanAgent()
+    player2 = HumanAgent()
+    game = NoughtsAndCrosses()
+    print(game.board)
+    while not game.winner():
+        move = player1.next_move(game)
+        game = game.move(move[0], move[1])
+        print(game.board)
+        if game.winner() == game.cross:
+            print("Player one wins!")
+            break
+        if game.winner() == game.draw:
+            print("It's a draw.")
+            break
+
+        move = player2.next_move(game)
+        game = game.move(move[0], move[1])
+        print(game.board)
+        if game.winner() == game.nought:
+            print("Player 2 wins!")
+            break
+        if game.winner() == game.draw:
+            print("It's a draw.")
+            break

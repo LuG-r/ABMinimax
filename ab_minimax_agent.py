@@ -43,7 +43,7 @@ class ABMinimaxAgent:
         player = state.next_player
 
         best_action = None
-        best_value = -1 * math.inf
+        best_value = -math.inf
         for action in state.actions():
             new_state = state.move(action[0], action[1])
             action_value = self.get_value(new_state, player, get_min=True)

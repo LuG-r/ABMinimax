@@ -4,7 +4,7 @@ class ABMinimaxAgent:
     def __init__(self, verbose=False):
         self.verbose = verbose
 
-    def next_move(self, state=NoughtsAndCrosses()):
+    def next_move(self, state):
         player = state.next_player
 
         best_action = None

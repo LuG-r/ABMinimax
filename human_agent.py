@@ -27,13 +27,16 @@ class HumanAgent:
         """
         while True:
             try:
-                print("What's your next move? In format row,col")
-                move = input(">")
-                move = move.split(',')
-                move = int(move[0]), int(move[1])
-                if not state.valid_move(move[0], move[1]):
-                    print("Space must be empty.")
-                else:
-                    return move
-            except ValueError:
-                print("Please enter a space as row,col between 0,0 and 2,2")
+                print("What's your next move? In format row,col e.g. 0,1")
+                move_input = input(">")
+                row, col = map(int, move_input.split(','))
+
+                if not (0 <= row <= 3 and 0 <= col <= 3):
+                    raise ValueError("Row and Column indices must be between 0 and 2.")
+
+                if not state.valid_move(row, col):
+                    raise ValueError("The selected space is not empty.")
+
+                return row, col
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please try again.")

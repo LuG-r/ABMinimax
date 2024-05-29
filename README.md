@@ -24,7 +24,7 @@ To install and run the game, follow these steps:
 
 1. Clone this repository to your local machine:
    ```
-   git clone https://github.com/your-username/noughts-and-crosses.git
+   git clone https://github.com/LuG-r/ABMinimax
    ```
 
 2. Navigate to the project directory:
